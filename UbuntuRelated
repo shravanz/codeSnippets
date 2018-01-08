@@ -1,0 +1,6 @@
+//---------Linux Ubuntu 16.04 Command to Update the Node js----------------------
+
+//-----------------------NodeUpdateCommand---------------------------------------
+# Using Ubuntu
+$-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+$-sudo apt-get install -y nodejs
