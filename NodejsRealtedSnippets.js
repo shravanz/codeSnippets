@@ -1,3 +1,22 @@
+//=======================Code For getting the user data using two diffrent Timestamp in gameplay(KWIZFUN-REQ) ==============================
+
+//-----------------------getuserDataFromGameplay.js----------------------------------------------------------------
+
+exports.userData = function (req, cb) {
+    GamePlay.find({ "createdDate": { $gte: new Date(2017, 10, 19), $lte: new Date(2018, 03, 24) } }).deepPopulate('event team team.teamCaptain')
+        .exec(function (err, data) {
+            var array = [];
+
+            data.forEach(function (arr) {
+                array.push({ "UserName": arr.team.teamCaptain.userName, "FirstName": arr.team.teamCaptain.firstName, "LastName": arr.team.teamCaptain.lastName, "EventTitle": arr.event.eventTitle });
+
+            });
+            console.log(array.length);
+            // console.log(data);
+            return cb(err, array)
+        })
+};
+
 //=======================Code For Storing HTTP Images to Our Node JS Sever===================================
 
 //-----------------------HttpImg2NodeServer.js----------------------------------------------------------------
