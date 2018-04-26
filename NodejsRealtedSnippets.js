@@ -18,13 +18,19 @@ exports.userData = function(req, cb) {
           EventTitle: arr.event.eventTitle
         });
       });
-      console.log(array.length);
+      //converting the json object and putting it into an excel files
+      var json2xls = require("json2xls");
+      var fs = require("fs");
+      var xls = json2xls(array);
+      fs.writeFileSync("data1.xlsx", xls, "binary");
       // console.log(data);
+      console.log(array.length);
       return cb(err, array);
     });
 };
 
 //=======================Code For getting the user data for a particular event (KWIZFUN-REQ) ==============================
+
 exports.getUserBasedOnEvent = function(req, cb) {
   GamePlay.find({ event: req.params._id })
     .lean()
