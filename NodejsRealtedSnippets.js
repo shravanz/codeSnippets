@@ -1,3 +1,48 @@
+//==============================code For validating objects in a array using JOI Npm=======================================
+
+//----------------------------------------JOI.js---------------------------------------------------------------------------
+
+var questionAnswerData = [
+  {
+    questionName: "What does a pedometer measure?",
+    choiceA: "choiceA",
+    choiceB: "Paddleboarding",
+    choiceC: "Biking",
+    choiceD: "Running",
+    answer: "B"
+  },
+  {
+    questionName: "What does a pedometer measure?",
+    choiceA: "Foot size",
+    choiceB: "Weight",
+    choiceC: "Steps",
+    choiceD: "Shoe odor",
+    answer: "C"
+  }
+];
+
+var Joi = require("joi");
+var service = Joi.object().keys({
+  questionName: Joi.string().required(),
+  choiceA: Joi.string().required(),
+  choiceB: Joi.string().required(),
+  choiceC: Joi.string().required(),
+  choiceD: Joi.string().required(),
+  answer: Joi.string().required()
+});
+
+var services = Joi.array().items(service);
+
+var test = Joi.validate(questionAnswerData, services, function(err, val) {
+  //err is equal to Null then everything is right
+  if (err !== null) {
+    console.log("Something is Not Right");
+  } else {
+    console.log("All is Well");
+  }
+});
+
+
 //==============================code For Multiple Image Upload using Multer================================================
 
 //----------------------------------MulterRoute.js-------------------------------------------------------------------------------
