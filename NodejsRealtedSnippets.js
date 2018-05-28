@@ -1,3 +1,65 @@
+//==============================code For Multiple Image Upload using Multer================================================
+
+//----------------------------------MulterRoute.js-------------------------------------------------------------------------------
+var express = require('express');
+var router = express.Router();
+var multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads/');
+    },
+    filename: function(req, file, cb) {
+        cb(null, new Date().toISOString() + file.originalname);
+       // console.log(file);
+    }
+});
+
+const fileFilter = (req, file, cb) => {
+    // reject a file
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+};
+
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 1024 * 1024 * 5
+    },
+    fileFilter: fileFilter
+});
+
+router
+
+    .post('/UPLOAD',upload.array('Image',3),function (req,res,next) {
+            gameSettingSvc.uploadAds(req,function (result) {
+                res.json(result);
+            });
+
+//----------------------------------MulterService.js------------------------------------------------------------------------------
+exports.uploadAds = function(req,cb) {
+
+  var catData = [];
+  var adFile = req.files;
+
+  catData.push({
+      full:adFile[0].filename,
+      half:adFile[1].filename,
+      ban:adFile[2].filename
+  });
+
+  console.log(catData);
+
+
+  return cb({'msg':adFile})
+
+
+};
+
+
 //=======================Code For getting the user data using two diffrent Timestamp in gameplay(KWIZFUN-REQ) ==============================
 
 //-----------------------getuserDataFromGameplay.js----------------------------------------------------------------
