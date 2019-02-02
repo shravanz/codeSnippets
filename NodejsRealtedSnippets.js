@@ -1,3 +1,64 @@
+//==============================Code for Delete Image path link in MongoDb ================================================
+router.delete("/dealDelete/:deal_id", (req, res, net) => {
+  //we are finding the request id and deleting from the collections
+  dealsinfos.findOne({ _id: req.params.deal_id }, function(err, deal) {
+    if (err) {
+      return res.status(500).json({ msg: "remove error" });
+    }
+    // LOOP LOGIC
+    //If image parameter has arrays of image Path  
+    var fs = require("fs");
+    for (let i = 0; i < deal.image.length; i++) {
+      var ret = deal.image[i].replace(
+        "https://eenpnode-dev.azurewebsites.net",
+        ""
+      );
+      var path = "./public" + ret;
+      console.log(path);
+      if (fs.existsSync(path)) {
+        fs.unlinkSync(path);
+        console.log("Files Deleted");
+      } else {
+        return res.status(404).json("path Error");
+      }
+    }
+    dealsinfos.findByIdAndDelete({ _id: deal._id }, function(err) {
+      if (err) {
+        res.status(500).json({ msg: "Delete error" });
+      }
+      res.status(200).json({ msg: "Data removed success" });
+    });
+  });
+
+  // res.json({ msg: deal });
+});
+// If image parameter has only one value which is stored in array 
+
+//     // If the Id is matched we find the the link and mutate it
+//     var ret = deal.image[0].replace(
+//       "https://eenpnode-dev.azurewebsites.net",
+//       ""
+//     );
+//     console.log(ret); // check the console log
+//     var fs = require("fs"); // requiring the fs core module
+//     var path = "./public" + ret;
+//     if (fs.existsSync(path)) {
+//       fs.unlinkSync(path); // removing the matched file from the directory
+//     } else {
+//       return res.status(404).json({ msg: "path could not found the server" });
+//     }
+//     console.log("File deleted");
+//     //Finally we are deleting from the collections
+//     dealsinfos.findByIdAndDelete({ _id: deal._id }, function(err) {
+//       if (err) {
+//         res.status(400).json({ msg: "Delete error" });
+//       }
+//       res.status(200).json({ msg: "Data removed success" });
+//     });
+//   });
+//});
+
+
 //==============================code For validating objects in a array using JOI Npm=======================================
 
 //----------------------------------------JOI.js---------------------------------------------------------------------------
