@@ -1,3 +1,14 @@
+//==============================Object Manipulation========================================================================
+//HOW TO CONVERT A STRING TO ARRAY OF OBJECT
+// var String = "single=2000&double=4000&three=%20"
+//  CONVERT TO ARRAY OF OBJECT LIKE THIS
+// arrObj = [{type:'single',price:2000},{type:'double',price:4000},{type:'three',price:%20}]
+
+let item = String.split('&'); 
+let arrObj = Object.assign(item.map(d => ({ type: d.split("=")[0], price: d.split("=")[1] })) 
+);
+
+
 //==============================Code for Delete Image path link in MongoDb ================================================
 router.delete("/dealDelete/:deal_id", (req, res, net) => {
   //we are finding the request id and deleting from the collections
