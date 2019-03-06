@@ -1,3 +1,9 @@
+//=============================URL LOGIC===================================================================================
+// URL LINK ='<link text="READ" linktype="external" url="https://www.facebook.com/" anchor="" target="" />';
+var url = ``; 
+var Read = url ? url.split('url="')[1].split('/" anchor')[0] : "";
+console.log(Read);
+
 //==============================Object Manipulation========================================================================
 //HOW TO CONVERT A STRING TO ARRAY OF OBJECT
 // var String = "single=2000&double=4000&three=%20"
