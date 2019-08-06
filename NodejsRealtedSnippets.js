@@ -1,3 +1,49 @@
+//=========================How to Remove/validate array of objects===================================================
+//TEST DATA 
+var a = [
+  {
+      "Priority": "1",
+      "Relationship": "Other",
+      "Language": "English",
+      "LegalName": "Micheal  Jackson",
+      "EmailAddress1": null,
+      "EmailAddress2": null,
+      "PhoneNumber1": "+1 (404) 555-1234",
+      "PhoneNumber2": null,
+      "PhoneNumber3": null
+  },
+  {
+      "Priority": "2",
+      "Relationship": "Sibling",
+      "Language": "American Sign Language",
+      "LegalName": "Mariah  Carey",
+      "EmailAddress1": null,
+      "EmailAddress2": null,
+      "PhoneNumber1": "+382 (777) 555-1212",
+      "PhoneNumber2": null,
+      "PhoneNumber3": "+47 (996) 555-1212"
+  },
+  {
+      "Priority": "3",
+      "Relationship": "Ex-Spouse",
+      "Language": "French",
+      "LegalName": "Bugs  Bunny",
+      "EmailAddress1": "bugbunny@fakeemail.com",
+      "EmailAddress2": null,
+      "PhoneNumber1": "+61 (555) 555-1212",
+      "PhoneNumber2": null,
+      "PhoneNumber3": null
+  }
+]
+a.filter(function(item) {
+  Object.keys(item).forEach(
+    key =>
+      (item[key] == null || item[key] == undefined || item[key] == "") &&
+      delete item[key]
+  );
+});
+console.log(a); // the new array of object will be null free i.e key which have null will be deleted 
+
 //=============================URL LOGIC===================================================================================
 // URL LINK ='<link text="READ" linktype="external" url="https://www.facebook.com/" anchor="" target="" />';
 var url = ``; 
