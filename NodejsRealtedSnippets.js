@@ -5,32 +5,32 @@ var a = [
       "Priority": "1",
       "Relationship": "Other",
       "Language": "English",
-      "LegalName": "Micheal  Jackson",
+      "LegalName": "MichealJackson",
       "EmailAddress1": null,
       "EmailAddress2": null,
-      "PhoneNumber1": "+1 (404) 555-1234",
+      "PhoneNumber1": "123456",
       "PhoneNumber2": null,
       "PhoneNumber3": null
   },
   {
       "Priority": "2",
-      "Relationship": "Sibling",
-      "Language": "American Sign Language",
-      "LegalName": "Mariah  Carey",
+      "Relationship": "Brother",
+      "Language": "Kryptonese",
+      "LegalName": "SuperMan",
       "EmailAddress1": null,
       "EmailAddress2": null,
-      "PhoneNumber1": "+382 (777) 555-1212",
+      "PhoneNumber1": "123456",
       "PhoneNumber2": null,
-      "PhoneNumber3": "+47 (996) 555-1212"
+      "PhoneNumber3": "123456"
   },
   {
       "Priority": "3",
       "Relationship": "Ex-Spouse",
       "Language": "French",
-      "LegalName": "Bugs  Bunny",
+      "LegalName": "Bugs Bunny",
       "EmailAddress1": "bugbunny@fakeemail.com",
       "EmailAddress2": null,
-      "PhoneNumber1": "+61 (555) 555-1212",
+      "PhoneNumber1": "1234567",
       "PhoneNumber2": null,
       "PhoneNumber3": null
   }
@@ -73,7 +73,7 @@ router.delete("/dealDelete/:deal_id", (req, res, net) => {
     var fs = require("fs");
     for (let i = 0; i < deal.image.length; i++) {
       var ret = deal.image[i].replace(
-        "https://eenpnode-dev.azurewebsites.net",
+        "URL",
         ""
       );
       var path = "./public" + ret;
@@ -99,7 +99,7 @@ router.delete("/dealDelete/:deal_id", (req, res, net) => {
 
 //     // If the Id is matched we find the the link and mutate it
 //     var ret = deal.image[0].replace(
-//       "https://eenpnode-dev.azurewebsites.net",
+//       "URL",
 //       ""
 //     );
 //     console.log(ret); // check the console log
