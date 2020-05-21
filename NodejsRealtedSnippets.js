@@ -1,3 +1,15 @@
+//==========================Convert Date from '05/13/2019 to 13/May/2019=============================================
+var date = '05/13/2020'
+
+
+var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+// var d = new Date(date);
+  const month = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+
+console.log(new Date(date).getDate()+'/'+month[(new Date(date).getMonth())]+'/'+new Date(date).getFullYear());
+//console.log(days[new Date(date).getDate()]+'/'+(new Date(date).getMonth())+'/'+new Date(date).getFullYear());
+
 //=========================How to Remove/validate array of objects===================================================
 //TEST DATA 
 var a = [
